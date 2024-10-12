@@ -1,13 +1,10 @@
-import { SignOutButton } from "@/components/sign-out-button"
-import { Button } from "@/components/ui/button"
-import { useAuthActions } from "@convex-dev/auth/react"
+import { UserButton } from "@/features/auth/components/user-button"
 
 export default function Home() {
 
   return (
     <div>
-      Logged In!
-      <SignOutButton />
+      <UserButton />
     </div>
   )
 }
