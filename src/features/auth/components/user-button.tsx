@@ -26,7 +26,6 @@ export function UserButton() {
   }
 
   const { image, name } = data
-  console.log(name)
 
   const avatarFallback = name!.charAt(0).toUpperCase()
 
