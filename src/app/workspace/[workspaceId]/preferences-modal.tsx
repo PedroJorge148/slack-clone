@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useUpdateWorkspace } from "@/features/workspaces/api/use-update-workspace";
 import { useRemoveWorkspace } from "@/features/workspaces/api/use-remove-workspace";
 
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { useConfirm } from "@/hooks/use-confirm";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -18,7 +20,6 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 interface PreferencesModalProps {
   open: boolean
@@ -29,8 +30,7 @@ interface PreferencesModalProps {
 export function PreferencesModal({ open, setOpen, initialValue }: PreferencesModalProps) {
   const workspaceId = useWorkspaceId()
   const router = useRouter()
-
-  
+  const [ConfirmDialog, confirm] = useConfirm('Delete workspace', 'Are you sure you want to delete this workspace?')
 
   const [value, setValue] = useState(initialValue)
   const [editOpen, setEditOpen] = useState(false)
@@ -73,7 +73,8 @@ export function PreferencesModal({ open, setOpen, initialValue }: PreferencesMod
   }
 
   return (
-    <div>
+    <>
+      <ConfirmDialog />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="p-0 bg-gray-50 overflow-hidden">
           <DialogHeader className="p-4 border-b bg-white">
@@ -137,6 +138,6 @@ export function PreferencesModal({ open, setOpen, initialValue }: PreferencesMod
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   )
 }

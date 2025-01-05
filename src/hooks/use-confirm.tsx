@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 export function useConfirm(
   title: string,
   message: string
-): [any, any] {
+): [() => JSX.Element, () => Promise<unknown>] {
   const [promise, setPromise] = useState<{ resolve: (value: boolean) => void} | null>(null)
 
   function confirm() {

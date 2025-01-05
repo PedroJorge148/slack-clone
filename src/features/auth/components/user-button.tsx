@@ -17,6 +17,7 @@ export function UserButton() {
   const { signOut } = useAuthActions()
   const { data, isLoading } = useCurrentUser()
 
+
   if (isLoading) {
     return <Loader2 className="size-4 animate-spin text-muted-foreground" />
   }
@@ -27,7 +28,7 @@ export function UserButton() {
 
   const { image, name } = data
 
-  const avatarFallback = name!.charAt(0).toUpperCase()
+  const avatarFallback = name![0].toUpperCase()
 
   function handleSignOut() {
     signOut()
@@ -39,9 +40,9 @@ export function UserButton() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="outline-none relative">
-        <Avatar className="size-10 hover:opacity-75 transition">
-          <AvatarImage alt={name} src={image} />
-          <AvatarFallback className="bg-sky-500 text-white">
+        <Avatar className="rounded-md size-10 hover:opacity-75 transition">
+          <AvatarImage className="rounded-md" alt={name} src={image} />
+          <AvatarFallback className="rounded-md bg-sky-500 text-white">
             {avatarFallback}
           </AvatarFallback>
         </Avatar>
